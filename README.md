@@ -2,5 +2,5 @@
 
 <details><summary> Primeiro uso:</summary>
  pip install -r requirements.txt<br />
- python app.py
+ flask --app app.py --debug run
 </details>
