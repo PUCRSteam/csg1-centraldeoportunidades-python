@@ -1,5 +1,6 @@
 # csg1-centraldeoportunidades-python
 
-> # Primeiro uso:
-    > ```pip install -r requirements.txt```
-    > ```python app.py```
+<details><summary> Primeiro uso:</summary>
+ pip install -r requirements.txt<br />
+ python app.py
+</details>
