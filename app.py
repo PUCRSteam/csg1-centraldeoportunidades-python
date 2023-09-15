@@ -1,13 +1,10 @@
-from flask import Flask
-app = Flask(__name__)
+import connexion
 
-@app.route("/")
-def hello():
-  return "Hellowfwefwe World!"
+# Crie a aplicação connexion
+app = connexion.App(__name__, specification_dir='.')
 
-@app.route("/criar-vaga")
-def criar_vaga():
-  return "Cria uma vfwfwfwfa"
+# Leia a especificação OpenAPI e crie os endpoints
+app.add_api('api_definition.yaml')
 
-if __name__ == "__main__":
-  app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
