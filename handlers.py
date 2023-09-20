@@ -1,6 +1,14 @@
+from flask import request
+from database.adapter import getDatabase
+
+db = getDatabase()
+
 def criar_vaga():
-    # Sua lógica aqui
-    print("Criando vaga")
+    #insert into vagas
+    dados = request.get_json()
+    db.session.add(dados)
+    db.session.commit()
+    #colocar em try catch pipipi popopo erro de commit etc
     return "Vaga criada", 201
 
 
