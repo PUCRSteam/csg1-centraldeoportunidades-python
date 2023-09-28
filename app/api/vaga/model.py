@@ -19,6 +19,6 @@ class Vaga(db.Model):
 
     quantidadeVagas: int = db.Column(db.Integer, nullable=False)
 
-    #cursos: list = db.Column(db.ClauseList)
+    cursos: list = db.relationship('Curso', backref='vagas', lazy=True)
 
     isDeleted: bool = db.Column(db.Integer, nullable=True, default=False)
