@@ -1,24 +1,22 @@
-from app.extensions.database import db
+from pydantic import BaseModel
+from typing import List
 
-class Vaga(db.Model):
-    __tablename__ = 'vagas'
+class Vaga(BaseModel):
+    id: int
 
-    __table_args__ = (db.UniqueConstraint('idAnunciante', 'id'))
+    idAnunciante: int
 
-    id: int = db.Column(db.Integer, primary_key=True)
+    descricao: str
 
-    idAnunciante: int = db.Column(db.Integer, nullable=False)
+    cargaHoraria: int
 
-    descricao: str = db.Column(db.String, nullable=False)
+    auxilioTransporte: bool
 
-    cargaHoraria: int = db.Column(db.Integer, nullable=False)
+    auxilioAlimentacao: bool
 
-    auxilioTransporte: bool = db.Column(db.Boolean, nullable=False)
+    quantidadeVagas: int
 
-    auxilioAlimentacao: bool = db.Column(db.Boolean, nullable=False)
+    cursos: List[Curso] = []
 
-    quantidadeVagas: int = db.Column(db.Integer, nullable=False)
-
-    cursos: list = db.relationship('Curso', backref='vagas', lazy=True)
-
-    isDeleted: bool = db.Column(db.Integer, nullable=True, default=False)
+    isDeleted: bool
+    

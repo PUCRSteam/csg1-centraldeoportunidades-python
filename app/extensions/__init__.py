@@ -1,15 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy.query import Query
-from flask import Flask
 
-from extensions.database import db
-from extensions.migration import migrate
-from extensions.cors import cors
+from app.extensions.database import _initialize_db
 
 
 def start_extensions(app: Flask):
 	
-	db.init_app(app)
-	migrate.init_app(app, db)
-	cors.init_app(app)
+	_initialize_db()
 

@@ -1,8 +1,10 @@
-from app.extensions.database import db
+from pydantic import BaseModel
+from typing import List
 
-class Curso(db.Model):
+class Curso(BaseModel):
     __tablename__ = 'cursos'
 
-    id: int = db.Column(db.Integer, primary_key=True)
+    id: int
 
-    curso: str = db.Column(db.String, nullable=False)
+    curso: str
+    
