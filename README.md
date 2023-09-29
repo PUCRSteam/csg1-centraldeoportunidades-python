@@ -3,10 +3,10 @@
 ## How to run
 
 - Instalar gerenciador de dependências abaixo:
-    <details> pip install "poetry==1.4.1" </details>
+    pip install "poetry==1.4.1"
 
 - Instalar dependências do projeto:
-    <details> poetry install </details>
+    poetry install
 
 <details><summary> Primeiro uso:</summary>
  python .app/main.py
