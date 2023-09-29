@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "csg1-centraldeoportunidades-python"
+version = "0.1.0"
+description = "Servico central de oportunidades"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "csg1_centraldeoportunidades_python"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.3.3"
+firebase-admin = "^6.2.0"
+requests = "^2.31.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
