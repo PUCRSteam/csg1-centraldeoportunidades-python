@@ -10,12 +10,8 @@ def init_app() -> FastAPI:
     app = FastAPI(title=settings.API_TITLE)
 
     #include routers
-    #start_extensions(app)
     app.include_router(get_vaga_router())
 
-    @app.get("/")
-    def read_root():
-        return {"Hello":"World"}
     #CORS middleware
     app.add_middleware(
         CORSMiddleware,

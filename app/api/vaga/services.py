@@ -1,4 +1,3 @@
-from io import BytesIO
 from fastapi import HTTPException
 from typing import List
 from app.api.vaga.model import Vaga
