@@ -1,21 +1,35 @@
-import os
-from flask import Flask, request, jsonify
+import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from firebase_admin import credentials, firestore, initialize_app
-from app.extensions import start_extensions
+from app.config import settings
 
 
-def create_app():
-    app = Flask(__name__)
-    start_extensions(app)
-    @app.route("/")
-    def hello():        
-        return "hello"
+def init_app() -> FastAPI:
+    app = FastAPI(title=settings.API_TITLE)
+
+    #include routers
+    #start_extensions(app)
+    @app.get("/")
+    def read_root():
+        return {"Hello":"World"}
+    #CORS middleware
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["OPTIONS", "GET", "POST", "PUT", "DELETE", "PATCH"],
+        allow_headers=["*"]
+    )
     return app
 
 
-port = int(os.environ.get('PORT', 8080))
+app = init_app()
 
 if __name__ == '__main__':
-    app = create_app()
-    
-    app.run(host='0.0.0.0', port=port, debug=True)
+    uvicorn.run(app,
+                reload=True,
+                host=settings.API_HOST,
+                port=settings.API_PORT,
+                ssl_certfile=settings.SSL_CERT_FILE,
+                ssl_keyfile=settings.SSL_KEY_FILE
+    )
