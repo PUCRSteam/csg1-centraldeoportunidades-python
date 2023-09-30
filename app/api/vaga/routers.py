@@ -11,7 +11,7 @@ _vaga_service = VagaService(_vaga_repository)
 _vaga_router = APIRouter(prefix="/vagas")
 
 
-@_vaga_router.post("/create")
+@_vaga_router.post("/")
 def create_pdf(vaga_data: Vaga) -> Vaga:
     return _vaga_service.create(vaga_data)
 
