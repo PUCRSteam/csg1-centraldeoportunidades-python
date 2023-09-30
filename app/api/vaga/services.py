@@ -14,3 +14,11 @@ class VagaService:
         except ValueError as e:
             raise HTTPException(
                 status_code=400, detail=e.args[0])
+
+    def get_by_id(self, id_vaga: int) -> Vaga:
+        try:
+            return self._repository.find_by_id(id_vaga)
+        except Exception:
+            raise HTTPException(
+                status_code=404, detail="Vaga não encontrada."
+            )

@@ -11,9 +11,13 @@ _vaga_service = VagaService(_vaga_repository)
 _vaga_router = APIRouter(prefix="/vagas")
 
 
-@_vaga_router.post("/")
+@_vaga_router.post("/create")
 def create_vaga(vaga_data: Vaga) -> Vaga:
     return _vaga_service.create(vaga_data)
+
+@_vaga_router.get("/id={id_vaga}")
+def get_vaga_by_id(id_vaga: int) -> Vaga:
+    return _vaga_service.get_by_id(id_vaga)
 
 def get_vaga_router() -> APIRouter:
     return _vaga_router
