@@ -8,4 +8,4 @@
 - Instalar dependências do projeto:
     poetry install
 
-- Run: poetry run python ./app/main.py or poetry shell -> python ./app/main.py
+- Run: poetry run uvicorn app.main:app --reload or poetry shell -> uvicorn app.main:app --reload
