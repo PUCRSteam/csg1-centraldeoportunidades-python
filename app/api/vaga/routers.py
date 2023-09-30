@@ -14,3 +14,6 @@ _vaga_router = APIRouter(prefix="/vagas")
 @_vaga_router.post("/")
 def create_pdf(vaga_data: Vaga) -> Vaga:
     return _vaga_service.create(vaga_data)
+
+def get_vaga_router() -> APIRouter:
+    return _vaga_router

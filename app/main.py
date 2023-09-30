@@ -1,4 +1,5 @@
 import uvicorn
+from app.api.vaga.routers import get_vaga_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from firebase_admin import credentials, firestore, initialize_app
@@ -10,6 +11,8 @@ def init_app() -> FastAPI:
 
     #include routers
     #start_extensions(app)
+    app.include_router(get_vaga_router())
+
     @app.get("/")
     def read_root():
         return {"Hello":"World"}
