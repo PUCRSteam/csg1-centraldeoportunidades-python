@@ -30,6 +30,6 @@ if __name__ == '__main__':
                 reload=True,
                 host=settings.API_HOST,
                 port=settings.API_PORT,
-                ssl_certfile=settings.SSL_CERT_FILE,
-                ssl_keyfile=settings.SSL_KEY_FILE
+                #ssl_certfile=settings.SSL_CERT_FILE,
+                #ssl_keyfile=settings.SSL_KEY_FILE
     )
