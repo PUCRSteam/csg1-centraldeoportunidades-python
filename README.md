@@ -1,5 +1,7 @@
 # csg1-centraldeoportunidades-python
 
+Serviço de Central de Oportunidades: Essencial para o engajamento dos alunos e sua interação com empresas parceiras e oportunidades de carreira, é um componente-chave do domínio do negócio.
+
 ## Pré-requisitos
 - [Python](https://python.org/) `^3.10` <br/>
 - [Poetry](https://python-poetry.org/docs/)
