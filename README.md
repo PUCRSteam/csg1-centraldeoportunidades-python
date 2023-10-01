@@ -13,5 +13,9 @@
     ```
 - Run: 
     ```bash
-    poetry run uvicorn app.main:app --reload or poetry shell -> uvicorn app.main:app --reload
+    poetry run uvicorn app.main:app --reload
+    ```
+    ```bash
+    poetry shell
+    uvicorn app.main:app --reload
     ```
