@@ -22,3 +22,11 @@ class VagaService:
             raise HTTPException(
                 status_code=404, detail="Vaga não encontrada."
             )
+
+    def get_by_id_anunciante(self, id_anunciante: int) -> List[Vaga]:
+        try:
+            return self._repository.get_by_id_anunciante(id_anunciante)
+        except Exception:
+            raise HTTPException(
+                status_code=404, detail="Vagas não encontradas."
+            )
