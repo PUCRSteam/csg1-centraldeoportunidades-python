@@ -1,5 +1,9 @@
 # csg1-centraldeoportunidades-python
 
+## Pré-requisitos
+- [Python](https://python.org/) `^3.10` <br/>
+- [Poetry](https://python-poetry.org/docs/)
+
 ## How to run
 
 - Instalar gerenciador de dependências abaixo:
@@ -15,6 +19,7 @@
     ```bash
     poetry run uvicorn app.main:app --reload
     ```
+    or
     ```bash
     poetry shell
     uvicorn app.main:app --reload
