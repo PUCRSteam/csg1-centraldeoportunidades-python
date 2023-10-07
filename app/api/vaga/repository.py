@@ -25,8 +25,10 @@ class VagaRepository:
 
     def get_vagas_from_curso(self, id_curso: int) -> list[Vaga]:
         list_vagas = []
-        filtro = list(Database["cursos"].find({"id": id_curso}))
-        vagas_dict = list(self._collection.find({"cursos": filtro}))
+        vagas_dict = list(
+            self._collection.find({"document_up.cursos": {"$in": ["{id_curso}"]}})
+        )
+        # vagas_dict = list(self._collection.find({"cursos": filtro}))
         for vaga in vagas_dict:
             list_vagas.append(vaga.parse_obj(Vaga))
         return list_vagas

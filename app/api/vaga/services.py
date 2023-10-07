@@ -27,7 +27,7 @@ class VagaService:
         except Exception:
             raise HTTPException(status_code=404, detail="Vagas não encontradas.")
 
-    def get_vagas_from_candidato_curso(self, id_curso: int):
+    def get_vagas_from_curso(self, id_curso: int):
         try:
             return self._repository._vaga_service.get_vagas_from_candidato_curso(
                 id_curso

@@ -32,4 +32,4 @@ def get_vaga_router() -> APIRouter:
 
 @_vaga_router.get("/id_curso={id_curso}")
 def get_vaga_by_id(id_curso: int) -> List[Vaga]:
-    return _vaga_service.get_vagas_from_candidato_curso(id_curso)
+    return _vaga_service.get_vagas_from_curso(id_curso)
