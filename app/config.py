@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     # DB configs.
     # If using Docker, define the environment variable in Dockerfile / docker-compose.yml
-    DB_HOST: str = getenv("MONGODB_HOST", "mongodb://mongo_user:mongo_password@localhost:27017")
+    DB_HOST: str = getenv("MONGODB_HOST", "mongodb://localhost:27017")
     DB_NAME: str = "central-de-oportunidades"
     #
     # DB ENV for runing tests.

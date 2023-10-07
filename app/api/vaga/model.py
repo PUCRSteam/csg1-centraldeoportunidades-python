@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from app.api.curso.model import Curso
 from typing import List
 
+
 class Vaga(BaseModel):
     id: int
 
@@ -17,7 +18,6 @@ class Vaga(BaseModel):
 
     quantidadeVagas: int
 
-    cursos: List[Curso] = []
+    cursos: List[int] = []
 
     isDeleted: bool
-    

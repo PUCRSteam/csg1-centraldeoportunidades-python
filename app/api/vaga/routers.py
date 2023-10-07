@@ -15,13 +15,21 @@ _vaga_router = APIRouter(prefix="/vagas")
 def create_vaga(vaga_data: Vaga) -> Vaga:
     return _vaga_service.create(vaga_data)
 
+
 @_vaga_router.get("/id={id_vaga}")
 def get_vaga_by_id(id_vaga: int) -> Vaga:
     return _vaga_service.get_by_id(id_vaga)
+
 
 @_vaga_router.get("/idAnunciante={id_anunciante}")
 def get_vagas_by_id_anunciante(id_anunciante: int) -> List[Vaga]:
     return _vaga_service.get_by_id_anunciante(id_anunciante)
 
+
 def get_vaga_router() -> APIRouter:
     return _vaga_router
+
+
+@_vaga_router.get("/id_curso={id_curso}")
+def get_vaga_by_id(id_curso: int) -> List[Vaga]:
+    return _vaga_service.get_vagas_from_candidato_curso(id_curso)
