@@ -98,17 +98,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /vagas/{idCandidato}/{idCurso}:
+  /vagas/{idCurso}:
     get:
       operationId: handlers.getVagasAlunoCurso
-      description: Pega as vagas de um anunciante por id do anunciante
+      description: Pega as vagas por curso
       parameters:
-        - name: idCandidato
-          in: path
-          description: ID do candidato
-          required: true
-          schema:
-            $ref: '#/components/schemas/IdCandidato'
         - name: idCurso
           in: path
           description: ID do curso
@@ -224,10 +218,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    IdCandidato:
-      description: Id de um Candidato
-      type: integer
-      format: int64
     IdAnunciante:
       description: Id do Anunciante de uma vaga
       type: integer
@@ -329,3 +319,4 @@ components:
         message:
           description: Mensagem de erro legível
           type: string
+          
