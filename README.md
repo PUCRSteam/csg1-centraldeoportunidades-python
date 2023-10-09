@@ -9,11 +9,22 @@ Serviço de Central de Oportunidades: Essencial para o engajamento dos alunos e 
 ## How to run
 
 - Instalar gerenciador de dependências abaixo:
+- 
+    - Linux, macOS, Windows (WSL)
+      
     ```bash
-    pip install "poetry==1.4.1"
+    curl -sSL https://install.python-poetry.org | python3 -
+    ```
+    
+    - Windows (Powershell)
+      
+    ```bash
+    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
     ```
 
-- Instalar dependências do projeto:
+    
+
+- Instalar dependências do projeto (certifiqe-se de estar com a versão do Python ^1.10.0):
     ```bash
     poetry install
     ```
