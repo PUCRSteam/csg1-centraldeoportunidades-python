@@ -32,3 +32,14 @@ class VagaRepository:
         for vaga in vagas_dict:
             list_vagas.append(vaga.parse_obj(Vaga))
         return list_vagas
+
+    def delete_vaga(self, id_vaga: int) -> DeleteResult:
+        delete_query = self._collection.find({"id": id_vaga})
+        return self._collection.delete_one(delete_query)
+
+    def edit_vaga(self, id_vaga: int) -> list[Vaga]:
+        vagas_anunciante = []
+        vagas_dict = list(self._collection.find({"idAnunciante": id_anunciante}))
+        for vaga in vagas_dict:
+            vagas_anunciante.append(vaga.parse_obj(Vaga))
+        return vagas_anunciante
