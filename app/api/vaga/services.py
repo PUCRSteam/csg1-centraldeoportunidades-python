@@ -37,16 +37,17 @@ class VagaService:
 
     def delete_vaga(self, id_vaga: int):
         try:
-            return self._repository._vaga_service.delete_vaga(id_curso)
+            return self._repository._vaga_service.delete_vaga(id_vaga)
         except Exception:
             raise HTTPException(
-                status_code=404, detail="Não foi possivel deletar a vaga."
+                status_code=400, detail="Não foi possivel deletar a vaga."
             )
 
-    def edit_vaga(self, id_vaga: int):
+    def edit_vaga(self, id_vaga: int, vaga_data: Vaga) -> Vaga:
         try:
-            return self._repository._vaga_service.edit_vaga(id_curso)
+            result = self._repository._vaga_service.edit_vaga(id_vaga)
+            return self._repository.find_by_id(result.inserted_id)
         except Exception:
             raise HTTPException(
-                status_code=404, detail="Não foi possivel editar a vaga."
+                status_code=400, detail="Não foi possivel editar a vaga."
             )
