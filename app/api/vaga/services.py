@@ -13,7 +13,7 @@ class VagaService:
             result = self._repository.create(vaga_data)
             return self._repository.find_by_id(result.inserted_id)
         except ValueError as e:
-            raise HTTPException(status_code=400, detail=e.args[0])
+            raise HTTPException(status_code=400)
 
     def get_by_id(self, id_vaga: int) -> Vaga:
         try:
