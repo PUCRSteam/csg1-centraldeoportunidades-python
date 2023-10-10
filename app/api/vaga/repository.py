@@ -14,7 +14,7 @@ class VagaRepository:
 
     def find_by_id(self, vaga_id: int) -> Vaga:
         vaga_dict = self._collection.find_one({"id": vaga_id})
-        return Vaga.model_validate(vaga_dict)
+        return Vaga.parse_obj(vaga_dict)
 
     def get_by_id_anunciante(self, id_anunciante: int) -> list[Vaga]:
         vagas_anunciante = []
