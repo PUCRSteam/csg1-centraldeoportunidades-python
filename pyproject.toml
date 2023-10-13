@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Servico central de oportunidades"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-packages = [{include = "csg1_centraldeoportunidades_python"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

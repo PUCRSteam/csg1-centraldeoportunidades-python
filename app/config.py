@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     #
     # DB ENV for runing tests.
     # Set the 'DB_ENVIRONMENT' environment variable to 'test' when running tests.
-    DB_ENVIRONMENT: str = "test"
+    DB_ENVIRONMENT: str = "prod"
 
 
 settings = Settings()
