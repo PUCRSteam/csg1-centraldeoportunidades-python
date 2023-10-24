@@ -1,0 +1,322 @@
+openapi: '3.0.3'
+info:
+  version: '1.0.0'
+  title: 'Central de Oportunidades'
+  description: 
+    -- Empresas parceiras e o departamento de carreiras podem inserir vagas.
+
+    -- Sugere vagas conforme perfil acadêmico do aluno.
+
+    -- Alertas sobre oportunidades recentes.
+servers:
+  - url: /
+paths:
+  /criar-vaga:
+    post:
+      operationId: handlers.criar_vaga
+      description: Cria uma vaga
+      requestBody:
+        description: Vaga a ser criada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vaga'
+      responses:
+        201:
+          description: Vaga criada          
+        422:
+          description: Erro na vaga
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vaga/{id}:    
+    get:
+      operationId: handlers.getVagaPorId
+      description: Pega vaga por id
+      parameters:
+        - name: id
+          in: path
+          description: ID da vaga
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Operação sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vaga'         
+        404:
+          description: Vaga não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vagas/{idAnunciante}:
+    get:
+      operationId: handlers.getVagaPorAnunciante
+      description: Pega as vagas de um anunciante por id do anunciante
+      parameters:
+        - name: idAnunciante
+          in: path
+          description: ID do anunciante
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdAnunciante'
+      responses:
+        200:
+          description: Operação sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vagas'         
+        404:
+          description: Anunciante não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vagas/{idCurso}:
+    get:
+      operationId: handlers.getVagasAlunoCurso
+      description: Pega as vagas por curso
+      parameters:
+        - name: idCurso
+          in: path
+          description: ID do curso
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdCurso'
+      responses:
+        200:
+          description: Operação sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vagas'         
+        404:
+          description: Anunciante não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /editar-vaga/{id}:
+    patch:
+      operationId: handlers.editar_vaga
+      description: Edita uma vaga
+      parameters:
+        - name: id
+          in: path
+          description: ID da vaga
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vaga'
+      responses:
+        204:
+          description: Operação sucedida          
+        404:
+          description: Vaga não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cria-alerta:
+    post:
+      operationId: handlers.criar_alerta
+      description: Cria um alerta
+      requestBody:
+        description: Alerta a ser criado
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alerta'
+      responses:
+        201:
+          description: Alerta criado        
+        422:
+          description: Erro no alerta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /alertas/{idCandidato}:
+    get:
+      operationId: handlers.getAlertasCandidato
+      description: Pegar alertas de um Candidato
+      parameters:
+        - name: idCandidato
+          in: path
+          description: ID do Candidato
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdCandidato'
+      responses:
+        200:
+          description: Operação sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alertas'         
+        404:
+          description: Candidato não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Erro inesperado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    IdAnunciante:
+      description: Id do Anunciante de uma vaga
+      type: integer
+      format: int64
+    IdCurso:
+      description: Id de um curso
+      type: integer
+      format: int64
+    Curso:
+      description: Curso a ser requisitado na vaga
+      type: object
+      required:
+        - nome
+        - idCurso
+      properties:
+        nome:
+          type: string
+        idCurso:
+          $ref: '#/components/schemas/IdCurso'
+    Vaga:
+      type: object
+      required:
+        - idVaga
+        - idAnunciante
+        - descricao
+        - cargaHoraria
+        - remuneracao
+        - quantidadeVagas
+        - cursos
+      properties:
+        idVaga:
+          type: integer
+          format: int64
+        idAnunciante:
+          $ref: '#/components/schemas/IdAnunciante'
+        descricao:
+          type: string
+        cargaHoraria:
+          type: string
+        remuneracao:          
+          type: number
+          format: float          
+        auxilioTransporte:          
+          type: number
+          format: float  
+        auxilioAlimentacao:          
+          type: number
+          format: float  
+        quantidadeVagas:          
+          type: integer
+          format: int64          
+        cursos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Curso'
+        isDeleted:
+          type: boolean
+          default: false
+    Vagas:
+      type: array
+      items:
+        $ref: '#/components/schemas/Vaga'
+    Alerta:
+      type: object
+      required:
+        - idAlerta
+        - dateTime
+        - descricao
+        - idVaga
+        - cursos
+      properties:
+        idAlerta:
+          type: integer
+          format: int64
+        dateTime:
+          type: string
+          format: date
+        descricao:
+          type: string
+        idVaga:
+          type: integer
+          format: int64
+        curso:
+          type: array
+          items:
+            $ref: '#/components/schemas/Curso'   
+        isDeleted:
+          type: boolean
+          default: false
+    Alertas:
+      type: array
+      items:
+        $ref: '#/components/schemas/Alerta'     
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: Mensagem de erro legível
+          type: string
+          
