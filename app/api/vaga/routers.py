@@ -33,3 +33,13 @@ def get_vaga_router() -> APIRouter:
 @_vaga_router.get("/id_curso={id_curso}")
 def get_vagas_from_curso(id_curso: int) -> List[Vaga]:
     return _vaga_service.get_vagas_from_curso(id_curso)
+
+
+@_vaga_router.delete("/id_vaga={id_vaga}")
+def delete_vaga(id_vaga: int):
+    return _vaga_service.delete_vaga(id_vaga)
+
+
+@_vaga_router.put("/id_vaga={id_vaga}")
+def edit_vaga(id_vaga: int, vaga_data: Vaga) -> Vaga:
+    return _vaga_service.edit_vaga(id_vaga, vaga_data)
