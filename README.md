@@ -21,7 +21,10 @@ Serviço de Central de Oportunidades: Essencial para o engajamento dos alunos e 
     ```bash
     (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
     ```
-
+    
+    ```bash
+    pip install "poetry==1.4.1"
+    ```
     
 
 - Instalar dependências do projeto (certifiqe-se de estar com a versão do Python ^1.10.0):
