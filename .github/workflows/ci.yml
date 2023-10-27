@@ -22,4 +22,4 @@ jobs:
     - name: Build the Docker image
       run: docker build -t csg1-centraldeoportunidades-python .
     - name: Push to Dockerhub
-      run: docker push $DOCKER_USERNAME/csg1-centraldeoportunidades-python:latest
+      run: docker push pchong77/csg1-centraldeoportunidades-python:latest
