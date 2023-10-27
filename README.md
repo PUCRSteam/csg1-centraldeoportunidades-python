@@ -40,3 +40,7 @@ Serviço de Central de Oportunidades: Essencial para o engajamento dos alunos e 
     poetry shell
     uvicorn app.main:app --reload
     ```
+## API docs
+    ```bash
+    http://127.0.0.1:8000/docs
+    ```
