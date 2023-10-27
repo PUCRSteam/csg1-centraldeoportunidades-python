@@ -21,5 +21,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build the Docker image
       run: docker build -t csg1-centraldeoportunidades-python .
+    - name: Tag the image
+      run: docker tag csg1-centraldeoportunidades-python:latest pchong77/csg1-centraldeoportunidades-python:latest
     - name: Push to Dockerhub
       run: docker push pchong77/csg1-centraldeoportunidades-python:latest
