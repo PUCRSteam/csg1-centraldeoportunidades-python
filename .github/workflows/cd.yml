@@ -7,7 +7,7 @@ on:
       - completed
 
 env:
-  GITHUB_HASH: git_hash=$(git rev-parse --short "$GITHUB_SHA")
+  GITHUB_HASH: $(git rev-parse --short "$GITHUB_SHA")
 
 jobs:
 
