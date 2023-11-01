@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  GITHUB_HASH: git_hash=$(git rev-parse --short "$GITHUB_SHA")
+
 jobs:
 
   build:
@@ -22,6 +25,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t csg1-centraldeoportunidades-python .
     - name: Tag the image
-      run: docker tag csg1-centraldeoportunidades-python:latest pchong77/csg1-centraldeoportunidades-python:latest
+      run: docker tag csg1-centraldeoportunidades-python:latest pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
     - name: Push to Dockerhub
-      run: docker push pchong77/csg1-centraldeoportunidades-python:latest
+      run: docker push pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
