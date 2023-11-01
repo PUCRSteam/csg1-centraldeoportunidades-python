@@ -6,6 +6,9 @@ on:
     types:
       - completed
 
+env:
+  GITHUB_HASH: git_hash=$(git rev-parse --short "$GITHUB_SHA")
+
 jobs:
 
   build:
@@ -14,7 +17,7 @@ jobs:
 
     steps:
     - name: Pull Docker image
-      run: sudo docker pull pchong77/csg1-centraldeoportunidades-python:latest
+      run: sudo docker pull pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
     - name: Delete old Docker container
       run: sudo docker rm -f csg1-centraldeoportunidades-python || true
     - name: Run Docker container
