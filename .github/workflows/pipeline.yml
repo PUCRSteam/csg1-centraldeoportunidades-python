@@ -41,24 +41,24 @@ jobs:
       with:
         terraform_version: 1.6.5
 
-    - name: Configure AWS credentials from AWS account
-      run:
-        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-        echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
+    # - name: Configure AWS credentials from AWS account
+    #   run:
+    #     echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+    #     echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+    #     echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
 
-    - name: Terraform init
-      id: init
-      run: terraform init
+    # - name: Terraform init
+    #   id: init
+    #   run: terraform init
 
-    - name: Terraform plan
-      id: plan
-      run: terraform plan -no-color
+    # - name: Terraform plan
+    #   id: plan
+    #   run: terraform plan -no-color
 
-    - name: Terraform plan status
-      if: steps.plan.outcome == 'failure'
-      run: exit 1
+    # - name: Terraform plan status
+    #   if: steps.plan.outcome == 'failure'
+    #   run: exit 1
 
-    - name: Terraform apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply
+    # - name: Terraform apply
+    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    #   run: terraform apply
