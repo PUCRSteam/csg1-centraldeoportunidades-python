@@ -13,12 +13,8 @@ jobs:
 
   build:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Pull Docker image
-      run: sudo docker pull pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
-    - name: Delete old Docker container
-      run: sudo docker rm -f csg1-centraldeoportunidades-python || true
-    - name: Run Docker container
-      run: sudo docker run -d -p 8080:8080 --name csg1-centraldeoportunidades-python pchong77/csg1-centraldeoportunidades-python
+    - name: Access Infra
+      run: cd infra
