@@ -47,9 +47,9 @@ jobs:
     #     echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
     #     echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
 
-    - name: Terraform init
-       run:         
-        terraform init
+    #- name: Terraform init
+    #   run:         
+    #    terraform init
 
     # - name: Terraform plan
     #   run:         
