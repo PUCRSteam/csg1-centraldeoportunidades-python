@@ -31,7 +31,7 @@ jobs:
     - name: Push to Dockerhub
       run: docker push pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
 
-    defaults:
+    - name: Change folder
       run:
         shell:
         working-directory: ./infra
