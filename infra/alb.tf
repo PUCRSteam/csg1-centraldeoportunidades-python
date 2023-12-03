@@ -29,10 +29,6 @@ module "alb" {
     }
   }
 
-  access_logs = {
-    bucket = "my-alb-logs"
-  }
-
   listeners = {
     ex-http-https-redirect = {
       port     = 80
@@ -52,6 +48,17 @@ module "alb" {
       port             = 8080
       target_type      = "instance"
     
+      health_check = {
+        enabled             = true
+        interval            = 30
+        path                = "/"
+        port                = "traffic-port"
+        healthy_threshold   = 3
+        unhealthy_threshold = 3
+        timeout             = 6
+        protocol            = "HTTP"
+        matcher             = "200-399"
+      }
 
       protocol_version = "HTTP1"
       target_id        = aws_instance.csg1-central-oportunidades.id
