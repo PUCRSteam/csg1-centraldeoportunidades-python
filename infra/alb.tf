@@ -64,7 +64,7 @@ module "alb" {
       target_id        = aws_instance.csg1-central-oportunidades.id
       port             = 80
       tags             = {
-        InstanceTargetGroupTag = "prod"
+        InstanceTargetGroupTag = "production"
       }
     }
   }
