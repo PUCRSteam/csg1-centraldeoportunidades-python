@@ -31,15 +31,15 @@ jobs:
     - name: Push to Dockerhub
       run: docker push pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
 
-    - name: Change folder
-      run:
-        shell:
-        working-directory: ./infra
+    # - name: Change folder
+    #   run:
+    #     shell:
+    #     working-directory: ./infra
       
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.6.5
+    # - name: Set up Terraform
+    #   uses: hashicorp/setup-terraform@v1
+    #   with:
+    #     terraform_version: 1.6.5
 
     # - name: Configure AWS credentials from AWS account
     #   run:
