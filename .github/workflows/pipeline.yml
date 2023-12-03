@@ -36,10 +36,10 @@ jobs:
     #     shell:
     #     working-directory: ./infra
       
-    # - name: Set up Terraform
-    #   uses: hashicorp/setup-terraform@v1
-    #   with:
-    #     terraform_version: 1.6.5
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.6.5
 
     # - name: Configure AWS credentials from AWS account
     #   run:
