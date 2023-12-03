@@ -31,37 +31,32 @@ jobs:
     - name: Push to Dockerhub
       run: docker push pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
 
-    # defaults: 
-    #   run:
-    #     shell:
-    #     working-directory: ./infra
-      
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.6.5
 
-    # - name: Configure AWS credentials from AWS account
-    #   run:
-    #     echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-    #     echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-    #     echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
+    - name: Checkout Repo
+      uses: actions/checkout@v1
 
-    #- name: Terraform init
-    #   run:         
-    #    terraform init
+    - name: Terraform Init
+      uses: hashicorp/terraform-github-actions/init@v0.4.0
+      env:
+        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: 'terraform'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    # - name: Terraform plan
-    #   run:         
-    #     terraform plan
-    #   working-directory: ./infra
+    - name: Terraform Plan
+      uses: hashicorp/terraform-github-actions/plan@v0.4.0
 
-    # - name: Terraform plan status
-    #   if: steps.plan.outcome == 'failure'
-    #   run: exit 1
-    #   working-directory: ./infra
+    - name: Terraform Validate
+      uses: hashicorp/terraform-github-actions/validate@v0.3.7
 
-    # - name: Terraform apply
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   run: terraform apply
-    #   working-directory: ./infra
+    - name: Terraform Apply
+      uses: hashicorp/terraform-github-actions/apply@v0.4.0
+      env:
+        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: 'terraform'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
