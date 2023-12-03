@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Pipeline
 
 on:
   push:
@@ -70,4 +70,3 @@ jobs:
       - name: Terraform apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply
-        
