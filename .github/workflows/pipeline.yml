@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
     - name: Checkout Repo
       uses: actions/checkout@v1
 
@@ -54,6 +54,15 @@ jobs:
 
     - name: Terraform Validate
       run: terraform validate -no-color
+      working-directory: ./infra
+
+    - name: Setup credentials
+      run: |
+        touch aws.env
+        echo AWS_ACCESS_KEY_ID=${{secrets.ACCESS_KEY_ID}} >> aws.env
+        echo AWS_SECRET_ACCESS_KEY=${{secrets.SECRET_ACCESS_KEY}} >> aws.env
+        echo AWS_SESSION_TOKEN=${{secrets.SESSION_TOKEN}} >> aws.env
+        cat aws.env
       working-directory: ./infra
 
     - name: Terraform Plan
