@@ -60,9 +60,9 @@ jobs:
     - name: Setup credentials
       run: |
         touch aws.env
-        echo AWS_ACCESS_KEY_ID=${{secrets.ACCESS_KEY_ID}} >> aws.env
-        echo AWS_SECRET_ACCESS_KEY=${{secrets.SECRET_ACCESS_KEY}} >> aws.env
-        echo AWS_SESSION_TOKEN=${{secrets.SESSION_TOKEN}} >> aws.env
+        echo AWS_ACCESS_KEY_ID=ACCESS_KEY_ID >> aws.env
+        echo AWS_SECRET_ACCESS_KEY=SECRET_ACCESS_KEY >> aws.env
+        echo AWS_SESSION_TOKEN=SESSION_TOKEN >> aws.env
         cat aws.env
         source aws.env
       working-directory: ./infra
