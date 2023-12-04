@@ -43,7 +43,7 @@ jobs:
       uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TF_ACTION_WORKING_DIR: 'terraform'
+        TF_ACTION_WORKING_DIR: 'infra'
         ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY_ID }}
         SECRET_ACCESS_KEY:  ${{ secrets.SECRET_ACCESS_KEY }}
         SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
