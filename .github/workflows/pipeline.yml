@@ -31,6 +31,11 @@ jobs:
     - name: Push to Dockerhub
       run: docker push pchong77/csg1-centraldeoportunidades-python:${{env.GITHUB_HASH}}
 
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    
     - name: Checkout Repo
       uses: actions/checkout@v1
 
