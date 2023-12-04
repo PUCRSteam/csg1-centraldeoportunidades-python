@@ -59,12 +59,9 @@ jobs:
 
     - name: Setup credentials
       run: |
-        touch aws.env
-        echo AWS_ACCESS_KEY_ID=ACCESS_KEY_ID >> aws.env
-        echo AWS_SECRET_ACCESS_KEY=SECRET_ACCESS_KEY >> aws.env
-        echo AWS_SESSION_TOKEN=SESSION_TOKEN >> aws.env
-        cat aws.env
-        source aws.env
+        export AWS_ACCESS_KEY_ID=ACCESS_KEY_ID
+        export AWS_SECRET_ACCESS_KEY=SECRET_ACCESS_KEY
+        export AWS_SESSION_TOKEN=SESSION_TOKEN
       working-directory: ./infra
 
     - name: Terraform Plan
