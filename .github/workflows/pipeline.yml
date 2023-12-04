@@ -63,6 +63,7 @@ jobs:
         echo AWS_SECRET_ACCESS_KEY=${{secrets.SECRET_ACCESS_KEY}} >> aws.env
         echo AWS_SESSION_TOKEN=${{secrets.SESSION_TOKEN}} >> aws.env
         cat aws.env
+        source aws.env
       working-directory: ./infra
 
     - name: Terraform Plan
