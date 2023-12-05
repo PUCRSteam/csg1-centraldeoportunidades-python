@@ -8,9 +8,6 @@ on:
 
 env:
   GITHUB_HASH: $(git rev-parse --short "$GITHUB_SHA")
-  ACCESS_KEY_ID: ${{secrets.ACCESS_KEY_ID}}
-  SECRET_ACCESS_KEY: ${{secrets.SECRET_ACCESS_KEY}}
-  SESSION_TOKEN: ${{secrets.SESSION_TOKEN}}
 
 jobs:
 
@@ -37,6 +34,13 @@ jobs:
 
     steps:
 
+    - uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.SESSION_TOKEN }}
+        aws-region: us-east-1
+
     - name: Checkout Repo
       uses: actions/checkout@v1
 
@@ -46,11 +50,6 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY_ID }}
-        SECRET_ACCESS_KEY:  ${{ secrets.SECRET_ACCESS_KEY }}
-        SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
       working-directory: ./infra
 
     - name: Terraform Validate
@@ -59,11 +58,7 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: |
-        export AWS_ACCESS_KEY_ID=ACCESS_KEY_ID
-        export AWS_SECRET_ACCESS_KEY=SECRET_ACCESS_KEY
-        export AWS_SESSION_TOKEN=SESSION_TOKEN
-        terraform plan -no-color    
+      run: terraform plan -no-color    
       continue-on-error: true
       working-directory: ./infra
 
@@ -129,7 +124,6 @@ jobs:
       run: terraform apply
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TF_ACTION_WORKING_DIR: 'terraform'
         ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY_ID }}
         SECRET_ACCESS_KEY:  ${{ secrets.SECRET_ACCESS_KEY }}
         SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
